@@ -1,12 +1,12 @@
-# OnTime App
+# BookAutomatic
 
 ### Description
-Will be creating an app to keep track of activities programmed daily, weekly, montly or yearly in which keeps up updated with the goals to meet daily by sending alerts and also keeping track of progress.
+Will be creating an app ... how exciting! 
+<b>Just wait for it...
 
 ### Technologies
 - Using pyQT for the GUI
 - Python
-- Sqlite3
 
 #### Setup
 To run this projects:
