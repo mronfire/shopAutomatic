@@ -2,7 +2,7 @@
 
 ### Description
 Will be creating an app ... how exciting! 
-<b>Just wait for it...
+<b>Just wait for it...</b>
 
 ### Technologies
 - Using pyQT for the GUI
