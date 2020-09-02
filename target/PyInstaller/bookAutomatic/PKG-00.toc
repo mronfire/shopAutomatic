@@ -27,8 +27,8 @@
   ('fbs_pyinstaller_hook',
    'C:\\Users\\marod\\myProjects\\bookAutomatic\\target\\PyInstaller\\fbs_pyinstaller_hook.py',
    'PYSOURCE'),
-  ('pyi_rth_qt5',
-   'c:\\users\\marod\\envs\\bookautomatic\\lib\\site-packages\\PyInstaller\\loader\\rthooks\\pyi_rth_qt5.py',
+  ('pyi_rth_pyqt5',
+   'c:\\users\\marod\\envs\\bookautomatic\\lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pyqt5.py',
    'PYSOURCE'),
   ('main',
    'C:\\Users\\marod\\myProjects\\bookAutomatic\\src\\main\\python\\main.py',
@@ -38,4 +38,5 @@
    'BINARY')],
  True,
  False,
- False)
+ False,
+ [])
