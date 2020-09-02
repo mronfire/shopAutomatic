@@ -11,6 +11,7 @@ Will be creating an app ... how exciting!
 #### Setup
 To run this projects:
 ```
-$ git clone https://github.com/mronfire/pyQT_tutorial.git
-$ TBD
+$ git clone https://github.com/mronfire/bookAutomatic.git
+$ cd to folder
+$ run main.py
 ```
