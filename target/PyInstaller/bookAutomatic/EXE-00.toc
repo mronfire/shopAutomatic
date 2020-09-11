@@ -42,7 +42,7 @@
  [],
  False,
  False,
- 1599058212,
+ 1599796249,
  [('runw.exe',
    'c:\\users\\marod\\envs\\bookautomatic\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\runw.exe',
    'EXECUTABLE')])
