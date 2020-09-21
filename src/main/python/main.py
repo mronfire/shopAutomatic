@@ -1,29 +1,37 @@
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
-from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy
+from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1800, 1200)
+        MainWindow.resize(706, 520)
 
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget = QWidget(MainWindow) #Central window Widget
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(50)
+        sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.centralwidget.sizePolicy().hasHeightForWidth())
         self.centralwidget.setSizePolicy(sizePolicy)
-        self.centralwidget.setMinimumSize(QSize(1000, 800))
+        self.centralwidget.setMinimumSize(QSize(706, 474))
         self.centralwidget.setObjectName("centralwidget")
 
+        self.formLayout = QFormLayout(self.centralwidget) #Form Layout
+        self.formLayout.setFieldGrowthPolicy(QFormLayout.ExpandingFieldsGrow)
+        self.formLayout.setRowWrapPolicy(QFormLayout.DontWrapRows)
+        self.formLayout.setContentsMargins(70, 70, 70, -1)
+        self.formLayout.setHorizontalSpacing(5)
+        self.formLayout.setVerticalSpacing(15)
+        self.formLayout.setObjectName("formLayout")
+
         self.titleLabel = QLabel(self.centralwidget) #Title Label to display
-        self.titleLabel.setGeometry(QRect(190, 50, 331, 51))
+        #self.titleLabel.setGeometry(QRect(190, 50, 331, 51))
         font = QFont()
         font.setPointSize(18)
         font.setBold(True)
@@ -32,56 +40,69 @@ class Ui_MainWindow(object):
         self.titleLabel.setFont(font)
         self.titleLabel.setAlignment(Qt.AlignCenter)
         self.titleLabel.setObjectName("titleLabel")
+        self.formLayout.setWidget(0, QFormLayout.SpanningRole, self.titleLabel)
 
         self.websiteInput = QLineEdit(self.centralwidget) #Website input
-        self.websiteInput.setGeometry(QRect(290, 120, 181, 21))
+        #self.websiteInput.setGeometry(QRect(290, 120, 181, 21))
         self.websiteInput.setObjectName("websiteInput")
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.websiteInput)
 
         self.usernameInput = QLineEdit(self.centralwidget) #Username input
-        self.usernameInput.setGeometry(QRect(290, 150, 181, 21))
+        #self.usernameInput.setGeometry(QRect(290, 150, 181, 21))
         self.usernameInput.setObjectName("usernameInput")
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.usernameInput)
 
         self.passwordInput = QLineEdit(self.centralwidget) #Password input
-        self.passwordInput.setGeometry(QRect(290, 190, 181, 21))
+        #self.passwordInput.setGeometry(QRect(290, 190, 181, 21))
+        self.passwordInput.setEchoMode(QLineEdit.Password)
         self.passwordInput.setObjectName("passwordInput")
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.passwordInput)
 
         font = QFont()
         font.setPointSize(11)
         self.websiteLabel = QLabel(self.centralwidget) #Website label
-        self.websiteLabel.setGeometry(QRect(200, 120, 81, 21))
+        #self.websiteLabel.setGeometry(QRect(200, 120, 81, 21))
         self.websiteLabel.setFont(font)
         self.websiteLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.websiteLabel.setObjectName("websiteLabel")
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.websiteLabel)
 
         self.usernameLabel = QLabel(self.centralwidget) #Username label
-        self.usernameLabel.setGeometry(QRect(200, 150, 81, 21))
+        #self.usernameLabel.setGeometry(QRect(200, 150, 81, 21))
         self.usernameLabel.setFont(font)
         self.usernameLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.usernameLabel.setObjectName("usernameLabel")
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.usernameLabel)
 
         self.passwordLabel = QLabel(self.centralwidget) #Password label
-        self.passwordLabel.setGeometry(QRect(200, 190, 81, 21))
+        #self.passwordLabel.setGeometry(QRect(200, 190, 81, 21))
         self.passwordLabel.setFont(font)
         self.passwordLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.passwordLabel.setObjectName("passwordLabel")
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.passwordLabel)
 
         self.startDateEdit = QDateEdit(self.centralwidget) #Start date input
-        self.startDateEdit.setGeometry(QRect(360, 250, 110, 22))
+        #self.startDateEdit.setGeometry(QRect(360, 250, 110, 22))
         self.startDateEdit.setObjectName("startDateEdit")
+        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.startDateEdit)
 
         self.endDateEdit = QDateEdit(self.centralwidget) #End date input
-        self.endDateEdit.setGeometry(QRect(360, 280, 110, 22))
+        #self.endDateEdit.setGeometry(QRect(360, 280, 110, 22))
         self.endDateEdit.setObjectName("endDateEdit")
+        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.endDateEdit)
 
         self.searchButton = QPushButton(self.centralwidget) #Search button
-        self.searchButton.setGeometry(QRect(320, 330, 101, 31))
+        #self.searchButton.setGeometry(QRect(320, 330, 101, 31))
         self.searchButton.setObjectName("searchButton")
-        self.searchButton.clicked.connect(self.dialog)
+        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.searchButton)
+        self.searchButton.clicked.connect(self.search)
 
         self.centralwidget.raise_()
         self.passwordLabel.raise_()
+        self.passwordInput.raise_()
         self.titleLabel.raise_()
         self.usernameLabel.raise_()
+        self.usernameInput.raise_()
         self.websiteLabel.raise_()
         self.startDateEdit.raise_()
         self.endDateEdit.raise_()
@@ -121,7 +142,7 @@ class Ui_MainWindow(object):
         import webbrowser
         webbrowser.open("https://github.com/mronfire/bookAutomatic")
 
-    def dialog(self):
+    def search(self):
         mbox = QMessageBox()
 
         mbox.setText("Opening website for you...")
