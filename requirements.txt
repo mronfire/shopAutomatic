@@ -8,3 +8,6 @@ pyinstaller-hooks-contrib==2020.7
 PyQt5==5.15.0
 PyQt5-sip==12.8.0
 pywin32-ctypes==0.2.0
+PyYAML==5.3
+selenium==3.141.0
+urllib3==1.25.7

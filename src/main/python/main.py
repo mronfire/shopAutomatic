@@ -2,6 +2,7 @@ from fbs_runtime.application_context.PyQt5 import ApplicationContext
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
+import time
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -144,11 +145,21 @@ class Ui_MainWindow(object):
 
     def search(self):
         mbox = QMessageBox()
-
         mbox.setText("Opening website for you...")
         mbox.setStandardButtons(QMessageBox.Ok)
-
         mbox.exec_()
+
+        from search import Search
+        try:
+            s = Search()
+            # s.login()
+            # s.getToListings()
+            # s.findMatch()
+            # s.checkCart()
+            # s.closeDriver()
+
+        except Exception as e:
+            print(e)
 
 if __name__ == "__main__":
     import sys
