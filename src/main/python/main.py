@@ -7,7 +7,7 @@ import time
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(706, 520)
+        MainWindow.resize(800, 600)
 
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -132,8 +132,8 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "BookAutomatic"))
-        self.titleLabel.setText(_translate("MainWindow", "Welcome to BookAutomatic"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "ShopAutomatic"))
+        self.titleLabel.setText(_translate("MainWindow", "Welcome to ShopAutomatic"))
         self.websiteLabel.setText(_translate("MainWindow", "Website:"))
         self.searchButton.setText(_translate("MainWindow", "Search"))
         self.contactMenu.setTitle(_translate("MainWindow", "Contact Us"))
@@ -149,9 +149,9 @@ class Ui_MainWindow(object):
         mbox.setStandardButtons(QMessageBox.Ok)
         mbox.exec_()
 
-        from search import Search
+        from search import SearchAmazon
         try:
-            s = Search()
+            s = SearchAmazon()
             # s.login()
             # s.getToListings()
             # s.findMatch()

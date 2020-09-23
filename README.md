@@ -1,12 +1,12 @@
 # BookAutomatic
 
 ### Description
-Are you tired of having to open up your browser and type the airline page you are looking for?
-If the answer is Yes, then stop doing that and instead opt to use this automated application that does all that for you.
+Are you tired of having to open up your browser and then type your desired shopping webpage? Moreover, have to open different tabs of different sites
+to search for the same item again multiple times?
+If the answer is YES, then stop doing that and instead opt to use this automated application that does all that for you.
 
-Just enter the airline webpage (or third-party booking site) you want to look for available flights and also provide your username and password
-(do not worry, everything is encrypted) and then let the application automate all the steps to find you an available
-flight that fits your journey.
+Just select the shopping webpage (or opt to search in all available sites) where you want to look for the item and also provide your username and 
+password (do not worry, everything is encrypted) and then let the application automate all the steps to find you an available item.
 
 <b>Enjoy!</b>
 
