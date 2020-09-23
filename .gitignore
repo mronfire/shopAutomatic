@@ -1,2 +1,6 @@
 *.txt
 *.ui
+*.yaml
+
+#Debug/Log files
+**/logs
