@@ -1,5 +1,5 @@
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
-from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout
+from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
 import time
@@ -32,7 +32,6 @@ class Ui_MainWindow(object):
         self.formLayout.setObjectName("formLayout")
 
         self.titleLabel = QLabel(self.centralwidget) #Title Label to display
-        #self.titleLabel.setGeometry(QRect(190, 50, 331, 51))
         font = QFont()
         font.setPointSize(18)
         font.setBold(True)
@@ -43,71 +42,58 @@ class Ui_MainWindow(object):
         self.titleLabel.setObjectName("titleLabel")
         self.formLayout.setWidget(0, QFormLayout.SpanningRole, self.titleLabel)
 
-        self.websiteInput = QLineEdit(self.centralwidget) #Website input
-        #self.websiteInput.setGeometry(QRect(290, 120, 181, 21))
-        self.websiteInput.setObjectName("websiteInput")
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.websiteInput)
+        self.websiteSelect = QComboBox() #Website select input
+        self.websiteSelect.addItem("Everywhere")
+        self.websiteSelect.addItem("Amazon")
+        self.websiteSelect.addItem("Ebay")
+        self.websiteSelect.addItem("Craiglist")
+        self.websiteSelect.setObjectName("websiteSelect")
+        #self.websiteSelect.currentIndexChanged.connect()
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.websiteSelect)
+
+        self.itemInput = QLineEdit(self.centralwidget) #Item input
+        self.itemInput.setObjectName("itemInput")
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.itemInput)
 
         self.usernameInput = QLineEdit(self.centralwidget) #Username input
-        #self.usernameInput.setGeometry(QRect(290, 150, 181, 21))
         self.usernameInput.setObjectName("usernameInput")
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.usernameInput)
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.usernameInput)
 
         self.passwordInput = QLineEdit(self.centralwidget) #Password input
-        #self.passwordInput.setGeometry(QRect(290, 190, 181, 21))
         self.passwordInput.setEchoMode(QLineEdit.Password)
         self.passwordInput.setObjectName("passwordInput")
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.passwordInput)
+        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.passwordInput)
 
         font = QFont()
         font.setPointSize(11)
         self.websiteLabel = QLabel(self.centralwidget) #Website label
-        #self.websiteLabel.setGeometry(QRect(200, 120, 81, 21))
         self.websiteLabel.setFont(font)
         self.websiteLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.websiteLabel.setObjectName("websiteLabel")
         self.formLayout.setWidget(1, QFormLayout.LabelRole, self.websiteLabel)
 
+        self.itemLabel = QLabel(self.centralwidget) #Item label
+        self.itemLabel.setFont(font)
+        self.itemLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.itemLabel.setObjectName("itemLabel")
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.itemLabel)
+
         self.usernameLabel = QLabel(self.centralwidget) #Username label
-        #self.usernameLabel.setGeometry(QRect(200, 150, 81, 21))
         self.usernameLabel.setFont(font)
         self.usernameLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.usernameLabel.setObjectName("usernameLabel")
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.usernameLabel)
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.usernameLabel)
 
         self.passwordLabel = QLabel(self.centralwidget) #Password label
-        #self.passwordLabel.setGeometry(QRect(200, 190, 81, 21))
         self.passwordLabel.setFont(font)
         self.passwordLabel.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
         self.passwordLabel.setObjectName("passwordLabel")
-        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.passwordLabel)
-
-        self.startDateEdit = QDateEdit(self.centralwidget) #Start date input
-        #self.startDateEdit.setGeometry(QRect(360, 250, 110, 22))
-        self.startDateEdit.setObjectName("startDateEdit")
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.startDateEdit)
-
-        self.endDateEdit = QDateEdit(self.centralwidget) #End date input
-        #self.endDateEdit.setGeometry(QRect(360, 280, 110, 22))
-        self.endDateEdit.setObjectName("endDateEdit")
-        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.endDateEdit)
+        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.passwordLabel)
 
         self.searchButton = QPushButton(self.centralwidget) #Search button
-        #self.searchButton.setGeometry(QRect(320, 330, 101, 31))
         self.searchButton.setObjectName("searchButton")
-        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.searchButton)
+        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.searchButton)
         self.searchButton.clicked.connect(self.search)
-
-        self.centralwidget.raise_()
-        self.passwordLabel.raise_()
-        self.passwordInput.raise_()
-        self.titleLabel.raise_()
-        self.usernameLabel.raise_()
-        self.usernameInput.raise_()
-        self.websiteLabel.raise_()
-        self.startDateEdit.raise_()
-        self.endDateEdit.raise_()
-        self.searchButton.raise_()
         
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -134,7 +120,10 @@ class Ui_MainWindow(object):
         _translate = QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "ShopAutomatic"))
         self.titleLabel.setText(_translate("MainWindow", "Welcome to ShopAutomatic"))
-        self.websiteLabel.setText(_translate("MainWindow", "Website:"))
+        self.websiteLabel.setText(_translate("MainWindow", "Select site to search from:"))
+        self.itemLabel.setText(_translate("MainWindow", "Item:"))
+        self.usernameLabel.setText(_translate("MainWindow", "Username:"))
+        self.passwordLabel.setText(_translate("MainWindow", "Password:"))
         self.searchButton.setText(_translate("MainWindow", "Search"))
         self.contactMenu.setTitle(_translate("MainWindow", "Contact Us"))
         self.actionGitHub.setText(_translate("MainWindow", "GitHub Page"))
@@ -152,13 +141,11 @@ class Ui_MainWindow(object):
         from search import SearchAmazon
         try:
             s = SearchAmazon()
-            # s.login()
-            # s.getToListings()
-            # s.findMatch()
-            # s.checkCart()
-            # s.closeDriver()
+            s.login()
+            s.searchItem(self.itemInput.text())
 
         except Exception as e:
+            s.closeDriver()
             print(e)
 
 if __name__ == "__main__":
