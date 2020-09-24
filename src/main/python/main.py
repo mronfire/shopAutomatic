@@ -42,13 +42,12 @@ class Ui_MainWindow(object):
         self.titleLabel.setObjectName("titleLabel")
         self.formLayout.setWidget(0, QFormLayout.SpanningRole, self.titleLabel)
 
-        self.websiteSelect = QComboBox() #Website select input
+        self.websiteSelect = QComboBox(self.centralwidget) #Website select input
         self.websiteSelect.addItem("Everywhere")
         self.websiteSelect.addItem("Amazon")
         self.websiteSelect.addItem("Ebay")
         self.websiteSelect.addItem("Craiglist")
         self.websiteSelect.setObjectName("websiteSelect")
-        #self.websiteSelect.currentIndexChanged.connect()
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.websiteSelect)
 
         self.itemInput = QLineEdit(self.centralwidget) #Item input
@@ -133,14 +132,10 @@ class Ui_MainWindow(object):
         webbrowser.open("https://github.com/mronfire/bookAutomatic")
 
     def search(self):
-        mbox = QMessageBox()
-        mbox.setText("Opening website for you...")
-        mbox.setStandardButtons(QMessageBox.Ok)
-        mbox.exec_()
-
         from search import SearchAmazon
         try:
-            s = SearchAmazon()
+            site = self.websiteSelect.currentText()
+            s = SearchAmazon(site)
             s.login()
             s.searchItem(self.itemInput.text())
 

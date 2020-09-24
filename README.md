@@ -1,4 +1,4 @@
-# BookAutomatic
+# ShopAutomatic
 
 ### Description
 Are you tired of having to open up your browser and then type your desired shopping webpage? Moreover, have to open different tabs of different sites
@@ -11,11 +11,9 @@ password (do not worry, everything is encrypted) and then let the application au
 <b>Enjoy!</b>
 
 ### Technologies
-- Using pyQT for the GUI
+- PyQT for the GUI
 - Python
+- Selenium
 
 #### Setup
-To run this projects:
-```
 - Working on it
-```

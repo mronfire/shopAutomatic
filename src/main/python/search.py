@@ -10,7 +10,10 @@ class SearchAmazon():
     DRIVER_PATH     = 'C:/Users/marod/myprojects/bookAutomatic/drivers/chromedriver.exe'  
     BASE_URL        = 'https://www.amazon.com/'
 
-    def __init__(self):
+    def __init__(self, site):
+        print('\n---------- LOG SUMMARY ----------\n')
+        print("Opening www." + site + ".com...")
+
         # Reading email and password from yaml file
         with open('src/main/python/config.yaml') as f:
             data = yaml.load(f, Loader=yaml.FullLoader)
@@ -24,7 +27,6 @@ class SearchAmazon():
         self.driver.get(self.BASE_URL)
         # Test whether correct URL was loaded
         assert 'Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more' in self.driver.title
-        print('\n---------- LOG SUMMARY ----------\n')
 
     def login(self):
         logIn = self.driver.find_element_by_id('nav-link-accountList')
