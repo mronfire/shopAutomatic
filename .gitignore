@@ -1,6 +1,7 @@
 *.txt
 *.ui
 *.yaml
+*.pyc
 
 #Debug/Log files
 **/logs
