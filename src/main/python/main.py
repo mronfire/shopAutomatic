@@ -2,7 +2,7 @@ from fbs_runtime.application_context.PyQt5 import ApplicationContext
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
-from Websites import amazon, ebay
+from websites import amazon, ebay
 import time
 
 class Ui_MainWindow(object):
@@ -135,15 +135,16 @@ class Ui_MainWindow(object):
     def search(self):
         try:
             site = self.websiteSelect.currentText()
-            print("Opening www." + site + ".com")
             s = None
             if site == "Amazon":
                 s = amazon.SearchAmazon()
             elif site == "Ebay":
                 s = ebay.SearchEbay()
+            else:
+                s = None
             
             s.login()
-            #s.searchItem(self.itemInput.text())
+            s.searchItem(self.itemInput.text())
 
         except Exception as e:
             s.closeDriver()
