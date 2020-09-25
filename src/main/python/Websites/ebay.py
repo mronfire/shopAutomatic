@@ -11,6 +11,8 @@ class SearchEbay(Sites):
         assert 'Electronics, Cars, Fashion, Collectibles & More | eBay' in self.driver.title
 
     def login(self):
+        #FIXME:
+        # Need to figure out how to bypass captcha
         logIn = self.driver.find_element_by_id('gh-ug')
         logIn.click()
         emailField = self.driver.find_element_by_id('userid')

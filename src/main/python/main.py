@@ -90,6 +90,10 @@ class Ui_MainWindow(object):
         self.passwordLabel.setObjectName("passwordLabel")
         self.formLayout.setWidget(4, QFormLayout.LabelRole, self.passwordLabel)
 
+        #TODO:
+        # Provide the ability to have to login or not.
+        # If user does not want to login, avoid the login and go straight to search
+
         self.searchButton = QPushButton(self.centralwidget) #Search button
         self.searchButton.setObjectName("searchButton")
         self.formLayout.setWidget(5, QFormLayout.FieldRole, self.searchButton)
@@ -141,6 +145,10 @@ class Ui_MainWindow(object):
             elif site == "Ebay":
                 s = ebay.SearchEbay()
             else:
+                #TODO:
+                # Need to implement a way to search for item in all websites
+                # and just have it open tabs in same browser instead of opening
+                # different drivers and browsers for each page
                 s = None
             
             s.login()
