@@ -2,10 +2,11 @@ from fbs_runtime.application_context.PyQt5 import ApplicationContext
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
-from websites import amazon, ebay
+from websites import sites, amazon, ebay
 import time
 
 class Ui_MainWindow(object):
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
@@ -134,25 +135,37 @@ class Ui_MainWindow(object):
 
     def contactPage(self):
         import webbrowser
-        webbrowser.open("https://github.com/mronfire/bookAutomatic")
+        webbrowser.open("https://github.com/mronfire/shopAutomatic")
+
+    def automateOnce(self, site, item):
+        site.login()
+        site.searchItem(item)
+        #self.new_tab = True
+
+    def automateAll(self, item):
+        s = amazon.SearchAmazon()
+        s.login()
+        s.searchItem(item)
+        
+        #next site
+        s = ebay.SearchEbay()
+        s.login()
+        s.searchItem(item)
 
     def search(self):
         try:
             site = self.websiteSelect.currentText()
-            s = None
+            item = self.itemInput.text()
+            
             if site == "Amazon":
                 s = amazon.SearchAmazon()
+                self.automateOnce(s, item)
             elif site == "Ebay":
                 s = ebay.SearchEbay()
+                self.automateOnce(s, item)
             else:
-                #TODO:
-                # Need to implement a way to search for item in all websites
-                # and just have it open tabs in same browser instead of opening
-                # different drivers and browsers for each page
-                s = None
-            
-            s.login()
-            s.searchItem(self.itemInput.text())
+                print("Selected to open all sites...")
+                self.automateAll(item)
 
         except Exception as e:
             s.closeDriver()

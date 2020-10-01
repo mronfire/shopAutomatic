@@ -4,23 +4,24 @@ from selenium.webdriver.common.keys import Keys
 from websites.sites import Sites
 from util import updater
 
-class SearchAmazon(Sites):
+class SearchCraiglist(Sites):
 
     def __init__(self):
-        BASE_URL     = 'https://www.amazon.com/'
-        super().__init__(BASE_URL, "Amazon")
+        BASE_URL     = 'https://accounts.craigslist.org/login?rp=%2Flogin%2Fhome&rt=L'
+        super().__init__(BASE_URL, "Craiglist")
         #assert 'Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more' in driver.title
 
     def login(self):
         if updater.get_driver() != None:
-            logIn = updater.get_driver().find_element_by_id('nav-link-accountList')
-            logIn.click()
-            emailField = updater.get_driver().find_element_by_id('ap_email')
+            #logIn = updater.get_driver().find_element_by_id('nav-link-accountList')
+            #logIn.click()
+            emailField = updater.get_driver().find_element_by_id('inputEmailHandle')
             emailField.send_keys(self.email)
             emailField.send_keys(Keys.RETURN)
-            passwordField = updater.get_driver().find_element_by_id('ap_password')
+            passwordField = updater.get_driver().find_element_by_id('inputPassword')
             passwordField.send_keys(self.password)
             passwordField.send_keys(Keys.RETURN)
+            #TODO: after logging in return back to main page to search
             print('\nLogged in successfully...')
 
     def searchItem(self, item):
