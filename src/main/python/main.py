@@ -2,7 +2,8 @@ from fbs_runtime.application_context.PyQt5 import ApplicationContext
 from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
-from websites import sites, amazon, ebay
+from websites import sites, amazon, ebay, craiglist
+from util import updater
 import time
 
 class Ui_MainWindow(object):
@@ -140,43 +141,47 @@ class Ui_MainWindow(object):
     def automateOnce(self, site, item):
         site.login()
         site.searchItem(item)
-        #self.new_tab = True
 
     def automateAll(self, item):
         s = amazon.SearchAmazon()
-        s.login()
-        s.searchItem(item)
+        self.automateOnce(s, item)
         
         #next site
         s = ebay.SearchEbay()
-        s.login()
-        s.searchItem(item)
+        self.automateOnce(s, item)
+
+        #next site
+        s = craiglist.SearchCraiglist()
+        self.automateOnce(s, item)
 
     def search(self):
         try:
             site = self.websiteSelect.currentText()
             item = self.itemInput.text()
-            
-            if site == "Amazon":
+
+            if site == "Everywhere":
+                print("Selected to open all sites...")
+                self.automateAll(item)
+            elif site == "Amazon":
                 s = amazon.SearchAmazon()
                 self.automateOnce(s, item)
             elif site == "Ebay":
                 s = ebay.SearchEbay()
                 self.automateOnce(s, item)
-            else:
-                print("Selected to open all sites...")
-                self.automateAll(item)
+            elif site == "Craiglist":
+                s = craiglist.SearchCraiglist()
+                self.automateOnce(s, item) 
 
         except Exception as e:
-            s.closeDriver()
+            s.tearDown()
             print(e)
 
 if __name__ == "__main__":
     import sys
-    appctxt = ApplicationContext()       # 1. Instantiate ApplicationContext
+    appctxt = ApplicationContext()       # Instantiate ApplicationContext
     MainWindow = QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    exit_code = appctxt.app.exec_()      # 2. Invoke appctxt.app.exec_()
+    exit_code = appctxt.app.exec_()      # Invoke appctxt.app.exec_()
     sys.exit(exit_code)

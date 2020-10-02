@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import yaml
 import time
 from util import updater
@@ -9,7 +12,7 @@ class Sites():
     DRIVER_PATH  = 'C:/Users/marod/myprojects/shopAutomatic/drivers/chromedriver.exe'
     #new_tab = False
 
-    def __init__(self, pageURL, page):#, newTab, driver):
+    def __init__(self, pageURL, page):
         print('\n---------- LOG SUMMARY ----------\n')
         print('Opening ' + pageURL + '...')
         print('driver value: ' + str(updater.get_driver()))
@@ -33,22 +36,32 @@ class Sites():
             updater.update_new_tab(True)
 
         else:
-            #FIXME: Need to create tabs for each site
-            current_handle = updater.get_driver().current_window_handle
-            updater.get_driver().find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
-            #self.driver.execute_script("window.open('about:blank', 'tab');")
-            time.sleep(3)
-            all_handles = updater.get_driver().window_handles
-            print("\nPage Title before switching: " + updater.get_driver().title)
-            print("\nTotal Windows: " + str(len(all_handles)))
-            for handle in all_handles:
-                if handle != current_handle:
-                    updater.get_driver().switch_to_window(handle)
-                    print("\nPage title after switching: " + updater.get_driver().title)
-                    break
-            time.sleep(2)
+            try:
+                #FIXME: creating new tab is not working when I select a new site
+                current_handle = updater.get_driver().current_window_handle
+                #updater.get_driver().find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
+                updater.get_driver().execute_script("window.open('about:blank', 'tab');")
+                all_handles = updater.get_driver().window_handles
+                num_handles = len(all_handles)
+                WebDriverWait(updater.get_driver(), 10).until(EC.number_of_windows_to_be(num_handles + 1))
+                print("\nPage Title before switching: " + updater.get_driver().title)
+                print("\nTotal Windows: " + str(num_handles))
+                for handle in all_handles:
+                    if handle != current_handle:
+                        updater.get_driver().switch_to_window(handle)
+                        print("\nPage title after switching: " + updater.get_driver().title)
+                        break
+                time.sleep(2)
+            except WebDriverException as e:
+                #self.tearDown()
+                updater.update_new_tab(False)
+                print(e)
 
-        updater.get_driver().get(pageURL)    
+        if updater.get_new_tab != False:
+            updater.get_driver().get(pageURL)  
+        else:
+            print("\nChrome Window was closed. Ending program!")
+            self.tearDown()  
 
     def login(self):
         pass
@@ -56,5 +69,5 @@ class Sites():
     def searchItem(self, item):
         pass
 
-    def closeDriver(self):
-        updater.get_driver().close()
+    def tearDown(self):
+        updater.get_driver().quit()
