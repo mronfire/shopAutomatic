@@ -173,8 +173,8 @@ class Ui_MainWindow(object):
                 self.automateOnce(s, item) 
 
         except Exception as e:
-            s.tearDown()
-            print(e)
+            #s.tearDown()
+            print("Main-Exception: " + str(e))
 
 if __name__ == "__main__":
     import sys

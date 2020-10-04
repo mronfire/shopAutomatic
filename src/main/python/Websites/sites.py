@@ -26,42 +26,45 @@ class Sites():
 
         # Declare/Initialize driver variable and load the given URL in browser window
         if updater.get_new_tab() == False:
-            print("\nInitializing driver!")
-            options = webdriver.ChromeOptions()
-            options.add_argument("disable-infobards")
-            driver = webdriver.Chrome(chrome_options=options, executable_path=self.DRIVER_PATH)
-            driver.maximize_window()
-            driver.implicitly_wait(10)
-            updater.update_driver(driver)
-            updater.update_new_tab(True)
-
+            self.initializeDriver()
         else:
             try:
                 #FIXME: creating new tab is not working when I select a new site
-                current_handle = updater.get_driver().current_window_handle
+                #current_handle = updater.get_driver().current_window_handle
                 #updater.get_driver().find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
                 updater.get_driver().execute_script("window.open('about:blank', 'tab');")
                 all_handles = updater.get_driver().window_handles
                 num_handles = len(all_handles)
-                WebDriverWait(updater.get_driver(), 10).until(EC.number_of_windows_to_be(num_handles + 1))
+                WebDriverWait(updater.get_driver(), 10).until(EC.number_of_windows_to_be(num_handles))
                 print("\nPage Title before switching: " + updater.get_driver().title)
-                print("\nTotal Windows: " + str(num_handles))
-                for handle in all_handles:
-                    if handle != current_handle:
-                        updater.get_driver().switch_to_window(handle)
-                        print("\nPage title after switching: " + updater.get_driver().title)
-                        break
-                time.sleep(2)
+                print("Total Windows: " + str(num_handles))
+                updater.get_driver().switch_to_window(all_handles[num_handles - 1])
+                # for handle in all_handles:
+                #     if handle != current_handle:# and updater.get_driver().title == None:
+                #         updater.get_driver().switch_to_window(handle)
+                #         break
             except WebDriverException as e:
-                #self.tearDown()
                 updater.update_new_tab(False)
-                print(e)
+                updater.update_driver(None)
+                self.initializeDriver()
+                #print("Exception thrown: " + str(e))
 
         if updater.get_new_tab != False:
             updater.get_driver().get(pageURL)  
-        else:
-            print("\nChrome Window was closed. Ending program!")
-            self.tearDown()  
+            time.sleep(2)
+        # else:
+        #     print("\nChrome Window was closed. Ending program!")
+        #     self.tearDown()  
+
+    def initializeDriver(self):
+        print("\nInitializing driver!")
+        options = webdriver.ChromeOptions()
+        options.add_argument("disable-infobards")
+        driver = webdriver.Chrome(chrome_options=options, executable_path=self.DRIVER_PATH)
+        driver.maximize_window()
+        driver.implicitly_wait(10)
+        updater.update_driver(driver)
+        updater.update_new_tab(True)
 
     def login(self):
         pass
