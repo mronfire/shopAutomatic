@@ -1,5 +1,5 @@
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
-from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox
+from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox, QRadioButton
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
 from websites import sites, amazon, ebay, craiglist
@@ -95,10 +95,18 @@ class Ui_MainWindow(object):
         #TODO:
         # Provide the ability to have to login or not.
         # If user does not want to login, avoid the login and go straight to search
+        self.yesRadioButton = QRadioButton(self.centralwidget) #yes radio button
+        self.yesRadioButton.setChecked(True)
+        self.yesRadioButton.setObjectName("yesRadioButton")
+        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.yesRadioButton)
+
+        self.noRadioButton = QRadioButton(self.centralwidget) #no radio button
+        self.noRadioButton.setObjectName("noRadioButton")
+        self.formLayout.setWidget(6, QFormLayout.FieldRole, self.noRadioButton)
 
         self.searchButton = QPushButton(self.centralwidget) #Search button
         self.searchButton.setObjectName("searchButton")
-        self.formLayout.setWidget(5, QFormLayout.FieldRole, self.searchButton)
+        self.formLayout.setWidget(7, QFormLayout.FieldRole, self.searchButton)
         self.searchButton.clicked.connect(self.search)
         
         MainWindow.setCentralWidget(self.centralwidget)
@@ -130,6 +138,8 @@ class Ui_MainWindow(object):
         self.itemLabel.setText(_translate("MainWindow", "Item:"))
         self.usernameLabel.setText(_translate("MainWindow", "Username:"))
         self.passwordLabel.setText(_translate("MainWindow", "Password:"))
+        self.yesRadioButton.setText(_translate("MainWindow", "Login to Account"))
+        self.noRadioButton.setText(_translate("MainWindow", "Continue as Guest"))
         self.searchButton.setText(_translate("MainWindow", "Search"))
         self.contactMenu.setTitle(_translate("MainWindow", "Contact Us"))
         self.actionGitHub.setText(_translate("MainWindow", "GitHub Page"))
@@ -173,7 +183,6 @@ class Ui_MainWindow(object):
                 self.automateOnce(s, item) 
 
         except Exception as e:
-            #s.tearDown()
             print("Main-Exception: " + str(e))
 
 if __name__ == "__main__":
