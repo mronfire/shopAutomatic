@@ -1,6 +1,6 @@
 {
-    "app_name": "bookAutomatic",
+    "app_name": "shopAutomatic",
     "author": "Mario Rodriguez",
     "main_module": "src/main/python/main.py",
-    "version": "0.0.0"
+    "version": "1.0.0"
 }

@@ -16,9 +16,9 @@ Function .onInit
   ;Do not use InstallDir at all so we can detect empty $InstDir!
   ${If} $InstDir == "" ; /D not used
       ${If} $MultiUser.InstallMode == "AllUsers"
-          StrCpy $InstDir "$PROGRAMFILES\bookAutomatic"
+          StrCpy $InstDir "$PROGRAMFILES\shopAutomatic"
       ${Else}
-          StrCpy $InstDir "$LOCALAPPDATA\bookAutomatic"
+          StrCpy $InstDir "$LOCALAPPDATA\shopAutomatic"
       ${EndIf}
   ${EndIf}
 FunctionEnd
@@ -30,8 +30,8 @@ FunctionEnd
 ;--------------------------------
 ;General
 
-  Name "bookAutomatic"
-  OutFile "..\bookAutomaticSetup.exe"
+  Name "shopAutomatic"
+  OutFile "..\shopAutomaticSetup.exe"
 
 ;--------------------------------
 ;Interface Settings
@@ -41,14 +41,14 @@ FunctionEnd
 ;--------------------------------
 ;Pages
 
-  !define MUI_WELCOMEPAGE_TEXT "This wizard will guide you through the installation of bookAutomatic.$\r$\n$\r$\n$\r$\nClick Next to continue."
+  !define MUI_WELCOMEPAGE_TEXT "This wizard will guide you through the installation of shopAutomatic.$\r$\n$\r$\n$\r$\nClick Next to continue."
   !insertmacro MUI_PAGE_WELCOME
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
     !define MUI_FINISHPAGE_NOAUTOCLOSE
     !define MUI_FINISHPAGE_RUN
     !define MUI_FINISHPAGE_RUN_CHECKED
-    !define MUI_FINISHPAGE_RUN_TEXT "Run bookAutomatic"
+    !define MUI_FINISHPAGE_RUN_TEXT "Run shopAutomatic"
     !define MUI_FINISHPAGE_RUN_FUNCTION "LaunchLink"
   !insertmacro MUI_PAGE_FINISH
 
@@ -64,14 +64,14 @@ FunctionEnd
 ;Installer Sections
 
 !define UNINST_KEY \
-  "Software\Microsoft\Windows\CurrentVersion\Uninstall\bookAutomatic"
+  "Software\Microsoft\Windows\CurrentVersion\Uninstall\shopAutomatic"
 Section
   SetOutPath "$InstDir"
-  File /r "..\bookAutomatic\*"
-  WriteRegStr SHCTX "Software\bookAutomatic" "" $InstDir
+  File /r "..\shopAutomatic\*"
+  WriteRegStr SHCTX "Software\shopAutomatic" "" $InstDir
   WriteUninstaller "$InstDir\uninstall.exe"
-  CreateShortCut "$SMPROGRAMS\bookAutomatic.lnk" "$InstDir\bookAutomatic.exe"
-  WriteRegStr SHCTX "${UNINST_KEY}" "DisplayName" "bookAutomatic"
+  CreateShortCut "$SMPROGRAMS\shopAutomatic.lnk" "$InstDir\shopAutomatic.exe"
+  WriteRegStr SHCTX "${UNINST_KEY}" "DisplayName" "shopAutomatic"
   WriteRegStr SHCTX "${UNINST_KEY}" "UninstallString" \
     "$\"$InstDir\uninstall.exe$\" /$MultiUser.InstallMode"
   WriteRegStr SHCTX "${UNINST_KEY}" "QuietUninstallString" \
@@ -89,13 +89,13 @@ SectionEnd
 Section "Uninstall"
 
   RMDir /r "$InstDir"
-  Delete "$SMPROGRAMS\bookAutomatic.lnk"
-  DeleteRegKey /ifempty SHCTX "Software\bookAutomatic"
+  Delete "$SMPROGRAMS\shopAutomatic.lnk"
+  DeleteRegKey /ifempty SHCTX "Software\shopAutomatic"
   DeleteRegKey SHCTX "${UNINST_KEY}"
 
 SectionEnd
 
 Function LaunchLink
   !addplugindir "."
-  ShellExecAsUser::ShellExecAsUser "open" "$SMPROGRAMS\bookAutomatic.lnk"
+  ShellExecAsUser::ShellExecAsUser "open" "$SMPROGRAMS\shopAutomatic.lnk"
 FunctionEnd
