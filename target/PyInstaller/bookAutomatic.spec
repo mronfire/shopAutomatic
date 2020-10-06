@@ -3,13 +3,13 @@
 block_cipher = None
 
 
-a = Analysis(['C:\\Users\\marod\\myProjects\\bookAutomatic\\src\\main\\python\\main.py'],
-             pathex=['C:\\Users\\marod\\myProjects\\bookAutomatic\\target\\PyInstaller'],
+a = Analysis(['C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\python\\main.py'],
+             pathex=['C:\\Users\\marod\\myProjects\\shopAutomatic\\target\\PyInstaller'],
              binaries=[],
              datas=[],
              hiddenimports=[],
-             hookspath=['c:\\users\\marod\\envs\\bookautomatic\\lib\\site-packages\\fbs\\freeze\\hooks'],
-             runtime_hooks=['C:\\Users\\marod\\myProjects\\bookAutomatic\\target\\PyInstaller\\fbs_pyinstaller_hook.py'],
+             hookspath=['c:\\users\\marod\\envs\\shopautomatic\\lib\\site-packages\\fbs\\freeze\\hooks'],
+             runtime_hooks=['C:\\Users\\marod\\myProjects\\shopAutomatic\\target\\PyInstaller\\fbs_pyinstaller_hook.py'],
              excludes=[],
              win_no_prefer_redirects=False,
              win_private_assemblies=False,
@@ -26,7 +26,7 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=False,
-          console=False , icon='C:\\Users\\marod\\myProjects\\bookAutomatic\\src\\main\\icons\\Icon.ico')
+          console=False , icon='C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\icons\\Icon.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
