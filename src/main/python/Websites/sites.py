@@ -29,14 +29,16 @@ class Sites():
             self.initializeDriver()
         else:
             try:
-                #FIXME: creating new tab is not working when I select a new site
                 #current_handle = updater.get_driver().current_window_handle
                 #updater.get_driver().find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
-                updater.get_driver().execute_script("window.open('about:blank', 'tab');")
+                tab = updater.get_tab_num()
+                updater.get_driver().execute_script("window.open('about:blank', 'tab" + str(tab) + "');")
+                updater.update_tab_num(tab + 1)
                 all_handles = updater.get_driver().window_handles
+                print("\nAll handles created: " + str(all_handles))
                 num_handles = len(all_handles)
                 WebDriverWait(updater.get_driver(), 10).until(EC.number_of_windows_to_be(num_handles))
-                print("\nPage Title before switching: " + updater.get_driver().title)
+                print("Page Title before switching: " + updater.get_driver().title)
                 print("Total Windows: " + str(num_handles))
                 updater.get_driver().switch_to_window(all_handles[num_handles - 1])
                 # for handle in all_handles:
@@ -44,10 +46,10 @@ class Sites():
                 #         updater.get_driver().switch_to_window(handle)
                 #         break
             except WebDriverException as e:
+                print("Sites-Exception: " + e)
                 updater.update_new_tab(False)
                 updater.update_driver(None)
                 self.initializeDriver()
-                #print("Exception thrown: " + str(e))
 
         if updater.get_new_tab != False:
             updater.get_driver().get(pageURL)  

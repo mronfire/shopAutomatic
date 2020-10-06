@@ -7,14 +7,14 @@ from util import updater
 class SearchCraiglist(Sites):
 
     def __init__(self):
-        BASE_URL     = 'https://accounts.craigslist.org/login?rp=%2Flogin%2Fhome&rt=L'
+        BASE_URL     = 'http://www.craigslist.org'
         super().__init__(BASE_URL, "Craiglist")
         #assert 'Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more' in driver.title
 
     def login(self):
         if updater.get_driver() != None:
-            #logIn = updater.get_driver().find_element_by_id('nav-link-accountList')
-            #logIn.click()
+            logIn = updater.get_driver().find_element_by_link_text('https://accounts.craigslist.org/login/home')
+            logIn.click()
             emailField = updater.get_driver().find_element_by_id('inputEmailHandle')
             emailField.send_keys(self.email)
             #emailField.send_keys(Keys.RETURN)

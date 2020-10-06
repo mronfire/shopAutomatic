@@ -4,7 +4,7 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
 from websites import sites, amazon, ebay, craiglist
 from util import updater
-import time
+#import time
 
 class Ui_MainWindow(object):
 
@@ -92,9 +92,6 @@ class Ui_MainWindow(object):
         self.passwordLabel.setObjectName("passwordLabel")
         self.formLayout.setWidget(4, QFormLayout.LabelRole, self.passwordLabel)
 
-        #TODO:
-        # Provide the ability to have to login or not.
-        # If user does not want to login, avoid the login and go straight to search
         self.yesRadioButton = QRadioButton(self.centralwidget) #yes radio button
         self.yesRadioButton.setChecked(True)
         self.yesRadioButton.setObjectName("yesRadioButton")
@@ -148,39 +145,44 @@ class Ui_MainWindow(object):
         import webbrowser
         webbrowser.open("https://github.com/mronfire/shopAutomatic")
 
-    def automateOnce(self, site, item):
-        site.login()
+    def automateOnce(self, site, item, login):
+        if login == True:
+            site.login()
+        else:
+            print("\nSearching as Guest...")
+
         site.searchItem(item)
 
-    def automateAll(self, item):
+    def automateAll(self, item, login):
         s = amazon.SearchAmazon()
-        self.automateOnce(s, item)
+        self.automateOnce(s, item, login)
         
         #next site
         s = ebay.SearchEbay()
-        self.automateOnce(s, item)
+        self.automateOnce(s, item, login)
 
         #next site
         s = craiglist.SearchCraiglist()
-        self.automateOnce(s, item)
+        self.automateOnce(s, item, login)
 
     def search(self):
         try:
-            site = self.websiteSelect.currentText()
-            item = self.itemInput.text()
+            site  = self.websiteSelect.currentText()
+            item  = self.itemInput.text()
+            login = self.yesRadioButton.isChecked()
 
             if site == "Everywhere":
                 print("Selected to open all sites...")
-                self.automateAll(item)
+                self.automateAll(item, login)
             elif site == "Amazon":
                 s = amazon.SearchAmazon()
-                self.automateOnce(s, item)
+                self.automateOnce(s, item, login)
             elif site == "Ebay":
                 s = ebay.SearchEbay()
-                self.automateOnce(s, item)
+                self.automateOnce(s, item, login)
             elif site == "Craiglist":
                 s = craiglist.SearchCraiglist()
-                self.automateOnce(s, item) 
+                self.automateOnce(s, item, login) 
 
         except Exception as e:
             print("Main-Exception: " + str(e))
