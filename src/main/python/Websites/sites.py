@@ -9,7 +9,7 @@ from util import updater
 
 class Sites():
     # Enter the path to chromedriver location
-    DRIVER_PATH  = '<pathToProject>/shopAutomatic/drivers/chromedriver.exe'
+    DRIVER_PATH  = 'C:/Users/marod/myprojects/shopAutomatic/drivers/chromedriver.exe'
 
     def __init__(self, pageURL, page):
         print('\n---------- LOG SUMMARY ----------\n')
