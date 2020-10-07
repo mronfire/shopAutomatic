@@ -9,8 +9,7 @@ from util import updater
 
 class Sites():
     # Enter the path to chromedriver location
-    DRIVER_PATH  = 'C:/Users/marod/myprojects/shopAutomatic/drivers/chromedriver.exe'
-    #new_tab = False
+    DRIVER_PATH  = '<pathToProject>/shopAutomatic/drivers/chromedriver.exe'
 
     def __init__(self, pageURL, page):
         print('\n---------- LOG SUMMARY ----------\n')
@@ -30,7 +29,6 @@ class Sites():
         else:
             try:
                 #current_handle = updater.get_driver().current_window_handle
-                #updater.get_driver().find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
                 tab = updater.get_tab_num()
                 updater.get_driver().execute_script("window.open('about:blank', 'tab" + str(tab) + "');")
                 updater.update_tab_num(tab + 1)
@@ -53,7 +51,7 @@ class Sites():
 
         if updater.get_new_tab != False:
             updater.get_driver().get(pageURL)  
-            time.sleep(2)
+            time.sleep(1)
         # else:
         #     print("\nChrome Window was closed. Ending program!")
         #     self.tearDown()  
