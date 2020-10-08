@@ -36,8 +36,3 @@ DRIVER_PATH = <pathToProject>/shopAutomatic/drivers/chromedriver.exe
 4. run executable:
     - cd target
     - shopAutomaticSetup.exe
-
-#### Option #2:
-1. Download Zip
-2. Open project folder and double-click on the 'target' folder
-3. Double-click shopAutomaticSetup.exe to install application in your machine
