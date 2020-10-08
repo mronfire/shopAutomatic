@@ -42,7 +42,7 @@
  [],
  False,
  False,
- 1602015189,
+ 1602170514,
  [('runw.exe',
    'c:\\users\\marod\\envs\\shopautomatic\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\runw.exe',
    'EXECUTABLE')])
