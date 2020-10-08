@@ -31,8 +31,10 @@ DRIVER_PATH = <pathToProject>/shopAutomatic/drivers/chromedriver.exe
 ### Installation 
 #### Option #1:
 1. git clone https://github.com/mronfire/shopAutomatic.git
-2. cd shopAutomatic\target
-3. run executable by typing:
+2. cd shopAutomatic
+3. pip install -r requirements.txt
+4. run executable:
+    - cd target
     - shopAutomaticSetup.exe
 
 #### Option #2:
