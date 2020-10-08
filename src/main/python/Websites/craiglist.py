@@ -13,7 +13,7 @@ class SearchCraiglist(Sites):
 
     def login(self):
         if updater.get_driver() != None:
-            logIn = updater.get_driver().find_element_by_link_text('https://accounts.craigslist.org/login/home')
+            logIn = updater.get_driver().find_element_by_link_text("my account")
             logIn.click()
             emailField = updater.get_driver().find_element_by_id('inputEmailHandle')
             emailField.send_keys(self.email)

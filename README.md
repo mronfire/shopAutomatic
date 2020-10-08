@@ -14,6 +14,7 @@ password (optional) and then let the application automate all the steps to find 
 - Username and Password not fully implemented yet. For now, there is a YAML file where I put my credentials in which the program will try to read from.
     - I will be adding a database with pysql so when you enter your credentials, you can if you want, store your credentials in the DB for easier login next time, instead of using the YAML file.
 - Only 3 sites are available right now. Will be implementing a few more later on...
+- Find a way to bypass the recatcha required for EBAY to sign in...
 
 ### Technologies
 - PyQT for the GUI

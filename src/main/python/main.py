@@ -156,13 +156,13 @@ class Ui_MainWindow(object):
     def automateAll(self, item, login):
         s = amazon.SearchAmazon()
         self.automateOnce(s, item, login)
-        
-        #next site
-        s = ebay.SearchEbay()
-        self.automateOnce(s, item, login)
 
         #next site
         s = craiglist.SearchCraiglist()
+        self.automateOnce(s, item, login)
+
+        #next site
+        s = ebay.SearchEbay()
         self.automateOnce(s, item, login)
 
     def search(self):

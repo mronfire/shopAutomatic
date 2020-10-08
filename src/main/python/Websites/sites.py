@@ -44,7 +44,7 @@ class Sites():
                 #         updater.get_driver().switch_to_window(handle)
                 #         break
             except WebDriverException as e:
-                print("Sites-Exception: " + e)
+                print("Sites-Exception: " + str(e))
                 updater.update_new_tab(False)
                 updater.update_driver(None)
                 self.initializeDriver()
