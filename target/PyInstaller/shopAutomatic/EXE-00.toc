@@ -43,7 +43,7 @@
  [],
  False,
  False,
- 1602255383,
+ 1602268537,
  [('run_d.exe',
    'c:\\users\\marod\\envs\\shopautomatic\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit\\run_d.exe',
    'EXECUTABLE')])
