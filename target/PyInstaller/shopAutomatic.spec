@@ -14,19 +14,19 @@ a = Analysis(['C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\python\\m
              win_no_prefer_redirects=False,
              win_private_assemblies=False,
              cipher=block_cipher,
-             noarchive=True)
+             noarchive=False)
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
-          [('v', None, 'OPTION')],
+          [],
           exclude_binaries=True,
           name='shopAutomatic',
-          debug=True,
+          debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=False,
-          console=True , icon='C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\icons\\Icon.ico')
+          console=False , icon='C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\icons\\Icon.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
