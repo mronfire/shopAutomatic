@@ -11,7 +11,7 @@ password (optional) and then let the application automate all the steps to find 
 <b>Enjoy!</b>
 
 ### Work in Progress
-- Username and Password not fully implemented yet. For now, there is a YAML file where I put my credentials in which the program will try to read from.
+- Username and Password not fully implemented yet:
     - I will be adding a database with pysql so when you enter your credentials, you can if you want, store your credentials in the DB for easier login next time, instead of using the YAML file.
 - Only 3 sites are available right now. Will be implementing a few more later on...
 - Find a way to bypass the recatcha required for EBAY to sign in...
@@ -28,12 +28,17 @@ If you have a different Chrome version, download required web driver and place i
 ```
 DRIVER_PATH = <pathToProject>/shopAutomatic/drivers/chromedriver.exe
 ```
+- For now, create a YAML file where you can store your credentials in which the program will try to read from:
+```
+1. Go to base directory: src\main\resources\base
+- create a 'config.yaml' file in base folder with credentials to all sites so it automatically logins for you every time
+```
 
 ### Installation 
 #### Option #1:
 1. git clone https://github.com/mronfire/shopAutomatic.git
 2. cd shopAutomatic
-3. pip install -r requirements/windows.txt
+3. pip install -r requirements\windows.txt
 4. run executable:
     - cd target
     - shopAutomaticSetup.exe
