@@ -1,7 +1,7 @@
-*.txt
 *.ui
 *.yaml
 *.pyc
+*.pyo
 
 #Debug/Log files
 **/logs

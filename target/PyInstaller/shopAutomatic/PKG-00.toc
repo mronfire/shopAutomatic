@@ -33,6 +33,7 @@
   ('main',
    'C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\python\\main.py',
    'PYSOURCE'),
+  ('v', None, 'OPTION'),
   ('shopAutomatic.exe.manifest',
    'C:\\Users\\marod\\myProjects\\shopAutomatic\\target\\PyInstaller\\shopAutomatic\\shopAutomatic.exe.manifest',
    'BINARY')],
