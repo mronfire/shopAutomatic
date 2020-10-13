@@ -4,12 +4,16 @@ from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import yaml
-import time
+import time, os
 from util import updater
 
 class Sites():
     # Enter the path to chromedriver location
-    DRIVER_PATH  = 'C:/Users/marod/myprojects/shopAutomatic/driver/chromedriver.exe'
+    # DRIVER_PATH  = 'C:/Users/marod/myprojects/shopAutomatic/driver/chromedriver.exe'
+    #TODO: have to be the current directory location where project is cloned or download
+    currentDir = os.getcwd()
+    print(f"CurrentDir of project: {currentDir}\driver\chromedriver.exe")
+    DRIVER_PATH = f"{currentDir}\driver\chromedriver.exe"
 
     def __init__(self, pageURL, page):
         print('\n---------- LOG SUMMARY ----------\n')
