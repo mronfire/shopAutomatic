@@ -5,6 +5,7 @@ __pycache__
 *.ui
 *.pyc
 *.pyo
+*.yaml
 
 #Debug/Log files
 **/logs
