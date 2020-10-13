@@ -12,7 +12,7 @@ class SearchAmazon(Sites):
         #assert 'Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more' in driver.title
 
     def login(self):
-        if updater.get_driver() != None:
+        if updater.get_driver() != None and updater.get_login == True:
             logIn = updater.get_driver().find_element_by_id('nav-link-accountList')
             logIn.click()
             emailField = updater.get_driver().find_element_by_id('ap_email')

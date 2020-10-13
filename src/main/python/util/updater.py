@@ -25,3 +25,9 @@ def get_driver():
 
 def get_tab_num():
     return g.tab_num
+
+def update_login(l):
+    g.login = l
+
+def get_login():
+    return g.login

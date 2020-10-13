@@ -4,7 +4,6 @@ from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
 from websites import sites, amazon, ebay, craiglist
 from util import updater
-#import time
 
 class Ui_MainWindow(object):
 
@@ -145,44 +144,45 @@ class Ui_MainWindow(object):
         import webbrowser
         webbrowser.open("https://github.com/mronfire/shopAutomatic")
 
-    def automateOnce(self, site, item, login):
-        if login == True:
+    def automateOnce(self, site, item):
+        if updater.get_login() == True:
             site.login()
         else:
             print("\nSearching as Guest...")
 
         site.searchItem(item)
 
-    def automateAll(self, item, login):
+    def automateAll(self, item):
         s = amazon.SearchAmazon()
-        self.automateOnce(s, item, login)
+        self.automateOnce(s, item)
 
         #next site
         s = craiglist.SearchCraiglist()
-        self.automateOnce(s, item, login)
+        self.automateOnce(s, item)
 
         #next site
         s = ebay.SearchEbay()
-        self.automateOnce(s, item, login)
+        self.automateOnce(s, item)
 
     def search(self):
         try:
             site  = self.websiteSelect.currentText()
             item  = self.itemInput.text()
             login = self.yesRadioButton.isChecked()
+            updater.update_login(login)
 
             if site == "Everywhere":
                 print("Selected to open all sites...")
-                self.automateAll(item, login)
+                self.automateAll(item)
             elif site == "Amazon":
                 s = amazon.SearchAmazon()
-                self.automateOnce(s, item, login)
+                self.automateOnce(s, item)
             elif site == "Ebay":
                 s = ebay.SearchEbay()
-                self.automateOnce(s, item, login)
+                self.automateOnce(s, item)
             elif site == "Craiglist":
                 s = craiglist.SearchCraiglist()
-                self.automateOnce(s, item, login) 
+                self.automateOnce(s, item) 
 
         except Exception as e:
             print("Main-Exception: " + str(e))

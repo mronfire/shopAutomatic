@@ -4,10 +4,8 @@ __pycache__
 __pycache__/
 
 *.ui
-*.pyc
-*.pyo
-src/main/resources/base/config.yaml
-target/shopAutomatic/config.yaml
+*.py[cod]
+*.yaml
 
 #Debug/Log files
 **/logs

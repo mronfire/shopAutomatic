@@ -26,7 +26,7 @@ password (optional) and then let the application automate all the steps to find 
 If you have a different Chrome version, download required web driver and place it in the drivers folder after you have cloned the project.
 - Then, you want to add this drivers location in sites.py:
 ```
-DRIVER_PATH = <pathToProject>/shopAutomatic/drivers/chromedriver.exe
+DRIVER_PATH = <pathToProject>/shopAutomatic/driver/chromedriver.exe
 ```
 - For now, create a YAML file where you can store your credentials in which the program will try to read from:
 ```

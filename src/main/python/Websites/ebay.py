@@ -15,7 +15,7 @@ class SearchEbay(Sites):
     def login(self):
         #FIXME:
         # Need to figure out how to bypass captcha
-        if updater.get_driver() != None:
+        if updater.get_driver() != None and updater.get_login == True:
             logIn = updater.get_driver().find_element_by_id('gh-ug')
             logIn.click()
             emailField = updater.get_driver().find_element_by_id('userid')

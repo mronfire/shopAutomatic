@@ -22,10 +22,14 @@ class Sites():
         print('new_tab value: ' + str(updater.get_new_tab()))
 
         # Reading email and password from yaml file
-        with open('./src/main/resources/base/config.yaml') as f:
-            data = yaml.load(f, Loader=yaml.FullLoader)
-            self.email       = data['username' + page]
-            self.password    = data['password' + page]
+        try:
+            with open('./src/main/resources/base/config.yaml') as f:
+                data = yaml.load(f, Loader=yaml.FullLoader)
+                self.email       = data['username' + page]
+                self.password    = data['password' + page]
+        except Exception:
+            print("We could not find credentials to login in the YAML file... searching as Guest!")
+            updater.update_login(False)
 
         # Declare/Initialize driver variable and load the given URL in browser window
         if updater.get_new_tab() == False:
