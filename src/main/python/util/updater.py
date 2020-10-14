@@ -1,12 +1,4 @@
 import util.globales as g
-# import sys, os
-
-# def resource_path(relative_path):
-#     try:
-#         base_path = sys._MEIPASS
-#     except Exception:
-#         base_path = os.path.dirname(__file__)
-#     return os.path.join(base_path, relative_path)
 
 def update_new_tab(val):
     g.new_tab = val
@@ -17,6 +9,12 @@ def update_driver(d):
 def update_tab_num(n):
     g.tab_num = n
 
+def update_login(l):
+    g.login = l
+
+def update_driver_path(d):
+    g.driver_path = d
+
 def get_new_tab():
     return g.new_tab
 
@@ -26,8 +24,8 @@ def get_driver():
 def get_tab_num():
     return g.tab_num
 
-def update_login(l):
-    g.login = l
-
 def get_login():
     return g.login
+
+def get_driver_path():
+    return g.driver_path

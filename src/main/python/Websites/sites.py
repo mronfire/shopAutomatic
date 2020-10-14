@@ -9,11 +9,10 @@ from util import updater
 
 class Sites():
     # Enter the path to chromedriver location
-    # DRIVER_PATH  = 'C:/Users/marod/myprojects/shopAutomatic/driver/chromedriver.exe'
-    #TODO: have to be the current directory location where project is cloned or download
-    currentDir = os.getcwd()
-    print(f"CurrentDir of project: {currentDir}\driver\chromedriver.exe")
-    DRIVER_PATH = f"{currentDir}\driver\chromedriver.exe"
+    #DRIVER_PATH  = updater.get_driver_path()
+    # TODO: have to be the current directory location where project is cloned or download
+    # ISSUE might be that location of driver is not found when installer install in an specified folder.
+    #DRIVER_PATH = "./src/main/resources/base/chromedriver.exe"
 
     def __init__(self, pageURL, page):
         print('\n---------- LOG SUMMARY ----------\n')
@@ -62,7 +61,8 @@ class Sites():
         print("\nInitializing driver...")
         options = webdriver.ChromeOptions()
         options.add_argument("disable-infobards")
-        driver = webdriver.Chrome(chrome_options=options, executable_path=self.DRIVER_PATH)
+        DRIVER_PATH = updater.get_driver_path()
+        driver = webdriver.Chrome(chrome_options=options, executable_path=DRIVER_PATH)
         driver.maximize_window()
         driver.implicitly_wait(10)
         updater.update_driver(driver)

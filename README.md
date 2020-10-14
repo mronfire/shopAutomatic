@@ -23,15 +23,12 @@ password (optional) and then let the application automate all the steps to find 
 
 ### Set-Up:
 - In order for this to work you will have to download the web driver for the current Chrome version you have installed. At the time of writing this, I have version: <b>85.0.4183.121</b>
-If you have a different Chrome version, download required web driver and place it in the drivers folder after you have cloned the project.
-- Then, you want to add this drivers location in sites.py:
-```
-DRIVER_PATH = <pathToProject>/shopAutomatic/driver/chromedriver.exe
-```
+If you have a different Chrome version, download required web driver and place it in the resources folder after you have cloned the project.
+
 - For now, create a YAML file where you can store your credentials in which the program will try to read from:
 ```
 1. Go to base directory: src\main\resources\base
-- create a 'config.yaml' file in base folder with credentials to all sites so it automatically logins for you every time
+- create a 'config.yaml' file in base folder with credentials to all sites so it automatically logins for you every time. A config.yaml file might already be there so just update with required information as needed.
 ```
 
 ### Installation 

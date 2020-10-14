@@ -1,4 +1,4 @@
-# -*- mode: python ; coding: utf-8 -*-
+# -*- mode: python -*-
 
 block_cipher = None
 
@@ -26,12 +26,11 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=False,
-          console=False , icon='C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\icons\\Icon.ico')
+          console=True , icon='C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\icons\\Icon.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
                a.datas,
                strip=False,
                upx=False,
-               upx_exclude=[],
                name='shopAutomatic')

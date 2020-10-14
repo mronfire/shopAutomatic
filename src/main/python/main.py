@@ -1,13 +1,20 @@
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
-from PyQt5.QtWidgets import QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox, QRadioButton
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject, QSize
+from PyQt5.QtWidgets import (
+    QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QMessageBox, QDateEdit, 
+    QMenuBar, QMenu, QStatusBar, QAction, QSizePolicy, QFormLayout, QComboBox, QRadioButton,
+    )
 from websites import sites, amazon, ebay, craiglist
 from util import updater
 
 class Ui_MainWindow(object):
 
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow, driver):
+        # msg = QMessageBox()
+        # msg.setText("I am inside the SetupUI function...")
+        # msg.exec()
+
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
 
@@ -103,7 +110,7 @@ class Ui_MainWindow(object):
         self.searchButton = QPushButton(self.centralwidget) #Search button
         self.searchButton.setObjectName("searchButton")
         self.formLayout.setWidget(7, QFormLayout.FieldRole, self.searchButton)
-        self.searchButton.clicked.connect(self.search)
+        self.searchButton.clicked.connect(lambda: self.search(driver))
         
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -164,12 +171,18 @@ class Ui_MainWindow(object):
         s = ebay.SearchEbay()
         self.automateOnce(s, item)
 
-    def search(self):
+    def search(self, driver):
         try:
             site  = self.websiteSelect.currentText()
             item  = self.itemInput.text()
             login = self.yesRadioButton.isChecked()
             updater.update_login(login)
+            updater.update_driver_path(driver)
+
+            msg = QMessageBox()
+            msg.setText("Site: " + site + " and Item: " + item + " and Login status: " + str(login))
+            msg.setInformativeText("Driver: " + updater.get_driver_path())
+            msg.exec()
 
             if site == "Everywhere":
                 print("Selected to open all sites...")
@@ -190,9 +203,10 @@ class Ui_MainWindow(object):
 if __name__ == "__main__":
     import sys
     appctxt = ApplicationContext()       # Instantiate ApplicationContext
+    d = appctxt.get_resource("chromedriver.exe")
     MainWindow = QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui.setupUi(MainWindow, d)
     MainWindow.show()
     exit_code = appctxt.app.exec_()      # Invoke appctxt.app.exec_()
     sys.exit(exit_code)
