@@ -8,11 +8,6 @@ import time, os
 from util import updater
 
 class Sites():
-    # Enter the path to chromedriver location
-    #DRIVER_PATH  = updater.get_driver_path()
-    # TODO: have to be the current directory location where project is cloned or download
-    # ISSUE might be that location of driver is not found when installer install in an specified folder.
-    #DRIVER_PATH = "./src/main/resources/base/chromedriver.exe"
 
     def __init__(self, pageURL, page):
         print('\n---------- LOG SUMMARY ----------\n')

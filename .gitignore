@@ -9,3 +9,6 @@ __pycache__/
 #Debug/Log files
 **/logs
 *.log
+
+#Main Source
+python/ 
