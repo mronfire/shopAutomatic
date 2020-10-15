@@ -5,10 +5,8 @@ __pycache__/
 
 *.ui
 *.py[cod]
+*.py
 
 #Debug/Log files
 **/logs
 *.log
-
-#Main Source
-python/ 
