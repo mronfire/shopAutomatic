@@ -1,7 +1,8 @@
-# Put your credentials here
-# Example:
-# usernameAmazon : actual username
-# passwordAmazon : actual password
-# usernameEbay : actual username
-# passwordEbay : actual password
-# ...
+# Put your credentials here. Just un-comment and type username and password for the sites you want
+
+# usernameAmazon : 
+# passwordAmazon : 
+# usernameEbay : 
+# passwordEbay : 
+# usernameCraiglist : 
+# passwordCraiglist :

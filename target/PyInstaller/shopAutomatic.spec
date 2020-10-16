@@ -26,7 +26,7 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=False,
-          console=True , icon='C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\icons\\Icon.ico')
+          console=False , icon='C:\\Users\\marod\\myProjects\\shopAutomatic\\src\\main\\icons\\Icon.ico')
 coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
